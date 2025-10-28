@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apronix | A Powerful Multipurpose Bot</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background-color: #0d1117;
+      color: #c9d1d9;
+      overflow-x: hidden;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    header {
+      text-align: center;
+      padding: 6rem 1rem 3rem;
+      z-index: 2;
+      position: relative;
+    }
+
+    header h1 {
+      font-size: 3.2rem;
+      color: cyan;
+      text-shadow: 0 0 15px #00ffff;
+    }
+
+    header p {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    section {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      margin: 3rem auto;
+      background: rgba(22, 27, 34, 0.85);
+      padding: 2rem;
+      border-radius: 14px;
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.15);
+      transition: all 0.3s ease;
+    }
+
+    section:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 40px rgba(0, 255, 255, 0.25);
+    }
+
+    h2 {
+      color: #58a6ff;
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+    }
+
+    ul {
+      margin-left: 1.2rem;
+      line-height: 1.8;
+    }
+
+    a {
+      color: cyan;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid #21262d;
+      margin-top: 4rem;
+      color: #8b949e;
+      position: relative;
+      z-index: 2;
+    }
+
+    code {
+      background: #161b22;
+      padding: 4px 8px;
+      border-radius: 5px;
+      color: #00ffff;
+    }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 2.4rem; }
+      section { margin: 1rem; padding: 1.5rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="particles"></canvas>
+
+  <header>
+    <h1>🤖 Apronix</h1>
+    <p>A Powerful Multipurpose Bot for Discord</p>
+  </header>
+
+  <section>
+    <h2>🌟 Overview</h2>
+    <p><strong>Apronix</strong> is an advanced Discord bot packed with features to make your server powerful, fun, and well-managed. Whether you need moderation, music, utility tools, or entertainment commands — Apronix does it all with style.</p>
+  </section>
+
+  <section>
+    <h2>⚙️ Features</h2>
+    <ul>
+      <li>🛡️ Powerful moderation commands (ban, mute, warn, purge)</li>
+      <li>🎶 High-quality music system with filters and playlists</li>
+      <li>🎉 Giveaways, level system, and auto-moderation</li>
+      <li>🔔 Welcome, logging, and custom prefix setup</li>
+      <li>💎 Fast and optimized with modern Discord.js framework</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>🎵 Commands</h2>
+    <ul>
+      <li><code>/play</code> – Play songs from YouTube or Spotify</li>
+      <li><code>/skip</code> – Skip current track</li>
+      <li><code>/pause</code>, <code>/resume</code> – Control playback</li>
+      <li><code>/queue</code> – View or manage queue</li>
+      <li><code>/ban</code>, <code>/unban</code>, <code>/warn</code> – Manage members</li>
+      <li><code>/userinfo</code>, <code>/serverinfo</code> – View info</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>💠 Premium Features</h2>
+    <ul>
+      <li>🎧 320kbps Audio Quality</li>
+      <li>🚀 Faster response speed</li>
+      <li>✨ Exclusive music filters and effects</li>
+      <li>💬 Priority support access</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>🔗 Links</h2>
+    <ul>
+      <li>💌 Invite Bot: <a href="#">Coming Soon</a></li>
+      <li>💬 Support Server: <a href="#">Coming Soon</a></li>
+      <li>🌐 Website: <a href="#">Coming Soon</a></li>
+      <li>💎 Vote: <a href="#">Coming Soon</a></li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>© 2025 Apronix Development Team. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    // 💫 Particle Background
+    const canvas = document.getElementById("particles");
+    const ctx = canvas.getContext("2d");
+
+    let particlesArray;
+    const colors = ["#00ffff", "#58a6ff", "#00e0ff"];
+
+    function initParticles() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      particlesArray = [];
+
+      for (let i = 0; i < 100; i++) {
+        const size = Math.random() * 2 + 1;
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        const dx = (Math.random() - 0.5) * 0.7;
+        const dy = (Math.random() - 0.5) * 0.7;
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        particlesArray.push({ x, y, dx, dy, size, color });
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let p of particlesArray) {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+
+        p.x += p.dx;
+        p.y += p.dy;
+
+        if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+      }
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener("resize", initParticles);
+    initParticles();
+    animate();
+  </script>
+</body>
+</html>
