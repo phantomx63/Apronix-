@@ -1,50 +1,65 @@
-# 🤖 Apronix — A Powerful Multipurpose Discord Bot  
+# 🤖 Apronix — A Powerful Multipurpose Discord Bot
 
-![Apronix Banner](https://i.imgur.com/2cYxXEc.png) <!-- Replace with your real banner -->
-
-<p align="center">
-  <a href="https://discord.gg/YOURSERVER"><img src="https://img.shields.io/badge/Discord-Join%20Server-7289DA?style=for-the-badge&logo=discord" /></a>
-  <a href="#"><img src="https://img.shields.io/badge/Language-JavaScript-yellow?style=for-the-badge&logo=javascript" /></a>
-  <a href="#"><img src="https://img.shields.io/badge/Language-C++-blue?style=for-the-badge&logo=c%2B%2B" /></a>
-  <a href="#"><img src="https://img.shields.io/badge/Style-CSS3-1572B6?style=for-the-badge&logo=css3" /></a>
-</p>
+Apronix is an advanced, feature-rich, and fast **Multipurpose Discord Bot** built to make your server management smooth, fun, and automated. From moderation to entertainment, Apronix has everything your community needs!
 
 ---
 
-### 🌌 About Apronix  
+## 🌟 Features
 
-> Apronix is a **powerful, fast, and customizable multipurpose Discord bot** designed for every type of community.  
-> Built with **Node.js, C++, and CSS**, Apronix brings **moderation, fun, security, and automation** — all in one sleek bot.
-
----
-
-### ⚙️ Features  
-
-- 🛡️ **Moderation** — Ban, Unban, Kick, Mute, Warn, Lock, Unlock, Purge  
-- 🎉 **Giveaways** — Start and manage giveaways easily  
-- 💬 **AFK System** — Set and remove AFK status  
-- 👋 **Welcome Messages** — Custom embeds, GIFs, and images  
-- 🚨 **Anti-Nuke System** — Protects your server from raid attacks  
-- ⚙️ **Autorole & Prefix Customization**  
-- 🧾 **Embed Creator** — Create, show, and delete embeds  
-- 🎵 **Music System** *(coming soon)*  
-- 🧠 **Smart Utilities** — User info, server info, and more  
+- 🛡️ **Moderation** — Ban, kick, mute, warn, purge, lock/unlock channels, and more.  
+- 🎉 **Fun & Utility** — Memes, games, quotes, giveaways, and daily rewards.  
+- 📢 **Welcome System** — Customizable welcome/goodbye messages with images or embeds.  
+- ⚙️ **Automation** — Autorole, AFK system, anti-nuke, and vanity URL protection.  
+- 🎶 **Music System** — High-quality audio, playlist support, and YouTube integration.  
+- 🖼️ **Embed Creator** — Create, edit, and delete embeds with both slash and prefix commands.  
+- 💬 **Dual Command System** — Works with both **prefix** and **slash commands**.
 
 ---
 
-### 🧩 Tech Stack  
+## 🪄 Command Categories
 
-| Technology | Usage |
-|-------------|--------|
-| **JavaScript (Node.js)** | Core bot logic & command handling |
-| **C++** | Performance and backend optimizations |
-| **CSS3** | Website & dashboard styling |
-| **Discord.js v14** | Discord API integration |
+| Category | Description |
+|-----------|-------------|
+| ⚙️ General | Useful everyday commands |
+| 🔨 Moderation | Full control over your server |
+| 🎵 Music | Play and manage songs easily |
+| 🎉 Giveaway | Host and manage giveaways |
+| 🖼️ Embed | Create and manage embeds |
+| 🛡️ Anti-Nuke | Protect your server from raids |
+| 👋 Welcome | Customize welcome/goodbye messages |
+| ⚡ Utility | Tools, info, and more |
+
+> More commands are being added — **Coming soon!**
 
 ---
 
-### 🚀 Installation  
+## 🔗 Invite Apronix
 
-1. Clone the repo  
-   ```bash
-   git clone https://github.com/yourusername/Apronix.git
+[🌐 Invite Apronix to Your Server](https://discord.com/oauth2/authorize?client_id=1381259403063332884)  
+[💬 Join Support Server](https://discord.gg/mSMjjUUvmG)
+
+---
+
+## 💻 Hosting
+
+The Apronix documentation and website are hosted on **GitHub Pages**.  
+Stay tuned for updates and new features!
+
+---
+
+## 🧠 Developer
+
+**Created by:** [Gana (vx gani)](https://github.com/)  
+**Language:** JavaScript (Discord.js)  
+**Version:** 1.0.0  
+
+---
+
+## ⚠️ License
+
+This project is licensed under the **MIT License** — feel free to use and modify it with credit.
+
+---
+
+### 🌌 Apronix — A Powerful Multipurpose Bot  
+> “Your server’s next-level automation starts here.”
