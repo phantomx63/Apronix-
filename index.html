@@ -1,407 +1,336 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Apronix — A Powerful Multipurpose Bot</title>
-  <meta name="description" content="Apronix — A Powerful Multipurpose Discord Bot. Invite Apronix, join support, and view features." />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Apronix — A Powerful Multipurpose Bot</title>
+<meta name="description" content="Apronix — A powerful multipurpose Discord bot. Invite Apronix, join support, view commands." />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-  <!-- Google font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#04060a;
+    --card: rgba(10,14,18,0.6);
+    --cyan:#00f0ff;
+    --blue:#58a6ff;
+    --muted:#9fcbe6;
+    --glass: rgba(255,255,255,0.03);
+    --radius:14px;
+    --maxW:1100px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:var(--bg);font-family:'Poppins',system-ui,Segoe UI,Roboto,Arial;color:#e6f8ff}
+  a{color:inherit;text-decoration:none}
+  /* FULL BACKGROUND LAYERS */
+  .bg-waves{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+  .wave-layer{position:absolute;inset:-20% ;filter:blur(60px);opacity:0.09;mix-blend-mode:screen}
+  .wave1{background:linear-gradient(90deg,#002d40 0%, #00384f 50%, #001f3f 100%);animation:rotate1 20s linear infinite}
+  .wave2{background:radial-gradient(circle at 20% 30%, rgba(0,240,255,0.14), transparent 12%), radial-gradient(circle at 80% 70%, rgba(88,166,255,0.08), transparent 12%);animation:rotate2 26s linear infinite}
+  @keyframes rotate1{0%{transform:rotate(0) translate(-5%,0)}100%{transform:rotate(360deg) translate(5%,0)}}
+  @keyframes rotate2{0%{transform:rotate(0) translate(3%,0)}100%{transform:rotate(-360deg) translate(-3%,0)}}
 
-  <style>
-    :root{
-      --bg:#06070a;
-      --card: rgba(12,16,22,0.7);
-      --cyan: #00f0ff;
-      --blue: #58a6ff;
-      --glass: rgba(255,255,255,0.03);
-      --glass-2: rgba(255,255,255,0.04);
-      --radius: 14px;
-      --max-width: 1100px;
-    }
+  /* PARTICLE CANVAS */
+  canvas#particles{position:fixed;inset:0;z-index:1;pointer-events:none}
 
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%}
-    body{
-      font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
-      background:var(--bg);
-      color:#dbe7ee;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      overflow-x:hidden;
-    }
+  /* TOP NAV */
+  .nav {
+    position:fixed;
+    top:18px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:5;
+    display:flex;
+    gap:10px;
+    align-items:center;
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    padding:8px 12px;
+    border-radius:999px;
+    box-shadow:0 8px 30px rgba(0,0,0,0.6);
+    border:1px solid rgba(255,255,255,0.02);
+    backdrop-filter: blur(6px) saturate(120%);
+  }
+  .nav a{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;font-weight:600;font-size:14px;color:var(--cyan)}
+  .nav .btn-secondary{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);color:#cfefff}
+  .nav .btn-primary{background:linear-gradient(90deg, rgba(0,240,255,0.12), rgba(88,166,255,0.06));border:1px solid rgba(0,240,255,0.15);color:#00121a}
 
-    /* Full-screen canvas for particles */
-    canvas#particles {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      display:block;
-      background: radial-gradient( circle at 10% 20%, rgba(0,48,64,0.06), transparent 10%),
-                  radial-gradient( circle at 80% 80%, rgba(4,30,60,0.04), transparent 10%);
-    }
+  /* CENTER WRAPPER */
+  .wrap{position:relative;z-index:3;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:56px 20px}
+  .hero{
+    width:100%;max-width:var(--maxW);background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:18px;padding:36px;border:1px solid rgba(255,255,255,0.02);
+    box-shadow:0 20px 50px rgba(0,0,0,0.6);text-align:center;backdrop-filter: blur(6px);
+  }
 
-    /* layout container */
-    .wrap {
-      position: relative;
-      z-index: 2;
-      min-height: 100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding: 40px 20px;
-    }
+  /* GLOW BEHIND LOGO */
+  .logo-wrap{position:relative;margin:0 auto 18px;width:150px;height:150px;display:grid;place-items:center;border-radius:50%;}
+  .logo-glow{
+    position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 30% 30%, rgba(0,255,255,0.22), transparent 25%), radial-gradient(circle at 70% 70%, rgba(88,166,255,0.14), transparent 30%);
+    filter:blur(20px);transform:scale(.95);animation:pulseGlow 3.2s ease-in-out infinite;z-index:0;
+  }
+  @keyframes pulseGlow{
+    0%{opacity:0.6;transform:scale(0.9) rotate(0deg)}50%{opacity:1;transform:scale(1.02) rotate(4deg)}100%{opacity:0.6;transform:scale(0.9) rotate(0deg)}
+  }
 
-    .hero {
-      width:100%;
-      max-width:var(--max-width);
-      text-align:center;
-      padding: 48px;
-      border-radius: 18px;
-      margin: 16px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      box-shadow: 0 10px 30px rgba(2,10,20,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.02);
-      backdrop-filter: blur(6px) saturate(120%);
-    }
+  /* SVG logo (glowing) */
+  .logo-svg{width:92px;height:92px;position:relative;z-index:2;filter:drop-shadow(0 18px 50px rgba(0,240,255,0.12));transition:transform .7s}
+  .logo-svg:hover{transform:translateY(-6px) scale(1.02)}
 
-    /* logo */
-    .logo-wrap {
-      width:140px;
-      height:140px;
-      margin: 0 auto 18px;
-      display:grid;
-      place-items:center;
-      border-radius:50%;
-      background: linear-gradient(135deg, rgba(0,240,255,0.06), rgba(88,166,255,0.04));
-      box-shadow: 0 4px 30px rgba(0,240,255,0.06), 0 0 30px rgba(0,240,255,0.06);
-      border: 1px solid rgba(0,240,255,0.08);
-      transform: translateY(-6px);
-    }
+  h1{font-size:clamp(28px,4vw,44px);color:var(--cyan);text-shadow:0 6px 28px rgba(0,200,255,0.07);letter-spacing:-0.01em;margin-bottom:6px;font-weight:700}
+  p.lead{color:var(--muted);max-width:800px;margin:0 auto 18px;line-height:1.45;font-size:16px}
 
-    .logo-wrap img{
-      width:86px;
-      height:86px;
-      object-fit:contain;
-      filter: drop-shadow(0 6px 18px rgba(0,240,255,0.15));
-    }
+  /* CTA buttons */
+  .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:10px}
+  .cta a{padding:12px 20px;border-radius:12px;font-weight:700;border:1px solid rgba(255,255,255,0.03);background:transparent;color:var(--cyan);display:flex;align-items:center;gap:10px;transition:all .18s}
+  .cta a.primary{background:linear-gradient(90deg, rgba(0,240,255,0.12), rgba(88,166,255,0.06));box-shadow:0 12px 30px rgba(0,240,255,0.06);border:1px solid rgba(0,240,255,0.15);color:#001f25}
+  .cta a.pulse{border-radius:999px;backdrop-filter:blur(4px)}
+  .cta a:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(0,240,255,0.09)}
 
-    h1{
-      font-size: clamp(28px, 3.6vw, 44px);
-      color: linear-gradient(90deg,var(--cyan),var(--blue));
-      letter-spacing: -0.02em;
-      margin-bottom: 8px;
-      text-shadow: 0 6px 28px rgba(0,240,255,0.06);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:12px;
-    }
+  .coming{margin-top:12px;color:var(--muted);opacity:0.95;animation:smallPulse 2s infinite}
+  @keyframes smallPulse{0%,100%{opacity:0.6}50%{opacity:1}}
 
-    h1 .apronix-title {
-      color: #bff7ff;
-      font-weight:700;
-      text-transform:uppercase;
-    }
+  /* COMMANDS SECTION */
+  .commands{max-width:var(--maxW);margin:28px auto 60px;padding:18px}
+  .commands h2{color:var(--cyan);font-size:20px;margin-bottom:12px}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .card{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.008));padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.02);box-shadow:0 10px 24px rgba(0,0,0,0.6)}
+  .card h3{display:flex;align-items:center;gap:10px;color:#cfefff;margin-bottom:8px}
+  .cmd-list{font-family:monospace;background:rgba(0,0,0,0.18);padding:10px;border-radius:8px;color:#dbeeff;line-height:1.6;max-height:0;overflow:hidden;transition:max-height .36s cubic-bezier(.2,.9,.2,1)}
+  .cmd-list.open{max-height:420px;padding:12px}
+  .toggle{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:10px;background:rgba(255,255,255,0.02);cursor:pointer;border:1px solid rgba(255,255,255,0.02)}
+  .top-row{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:10px}
 
-    p.lead {
-      margin: 8px auto 18px;
-      max-width:800px;
-      color: #bcdff4;
-      opacity:0.95;
-      font-size: clamp(14px, 1.5vw, 16px);
-    }
+  /* FOOTER */
+  footer{max-width:var(--maxW);margin:40px auto 60px;padding:18px;text-align:center;color:#9fbad6;font-size:14px}
 
-    /* buttons */
-    .cta {
-      margin-top:18px;
-      display:flex;
-      gap:12px;
-      justify-content:center;
-      flex-wrap:wrap;
-    }
-
-    .btn {
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding: 12px 18px;
-      border-radius: 12px;
-      font-weight:600;
-      cursor:pointer;
-      text-decoration:none;
-      transition: transform .18s ease, box-shadow .18s ease;
-      box-shadow: 0 6px 22px rgba(0,0,0,0.45);
-      border: 1px solid rgba(255,255,255,0.03);
-      backdrop-filter: blur(4px);
-    }
-
-    .btn.primary {
-      background: linear-gradient(90deg, rgba(0,240,255,0.12), rgba(88,166,255,0.08));
-      color: #001a1a;
-      color: #00121a;
-      color: #001f25;
-      color: #001c2b;
-      color: #001;
-      color: white;
-      box-shadow: 0 10px 30px rgba(0,240,255,0.08), 0 2px 8px rgba(0,0,0,0.45);
-      border: 1px solid rgba(0,240,255,0.18);
-    }
-
-    .btn.ghost {
-      background: rgba(255,255,255,0.02);
-      color: #d1e9ff;
-      border: 1px solid rgba(255,255,255,0.04);
-    }
-
-    .btn:hover { transform: translateY(-4px); }
-    .btn.primary:hover { box-shadow: 0 18px 40px rgba(0,240,255,0.12); }
-
-    /* small caption */
-    .note {
-      margin-top:14px;
-      font-size:13px;
-      color:#9fbad6;
-      opacity:0.9;
-    }
-
-    /* features cards */
-    .grid {
-      display:grid;
-      grid-template-columns: repeat(3,1fr);
-      gap:14px;
-      margin-top:28px;
-    }
-
-    .card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.008));
-      border-radius: 12px;
-      padding: 14px;
-      border: 1px solid rgba(255,255,255,0.02);
-      box-shadow: 0 6px 18px rgba(5,10,20,0.6);
-      text-align:left;
-    }
-
-    .card h3{color:#cfefff;font-size:16px;margin-bottom:8px}
-    .card p{font-size:13px;color:#c9e7ff;opacity:0.85;line-height:1.45}
-
-    /* responsive */
-    @media (max-width:920px){
-      .grid{grid-template-columns: repeat(2,1fr)}
-    }
-    @media (max-width:640px){
-      .hero{padding:20px;margin:10px}
-      .grid{grid-template-columns: 1fr}
-      .logo-wrap{width:110px;height:110px}
-    }
-
-    /* subtle entrance animation */
-    .fade-in { animation: fadeInUp .8s ease both; }
-    @keyframes fadeInUp {
-      from { opacity:0; transform: translateY(8px) }
-      to   { opacity:1; transform: translateY(0) }
-    }
-
-    /* small floating glow */
-    .glow {
-      position: absolute;
-      inset: -40%;
-      filter: blur(90px);
-      z-index:1;
-      pointer-events:none;
-      opacity:0.18;
-      mix-blend-mode:soft-light;
-    }
-  </style>
+  /* responsive */
+  @media (max-width:980px){.grid{grid-template-columns:1fr}}
+  @media (max-width:600px){.nav{left:10px;transform:none;top:14px}.nav a{padding:8px}.logo-wrap{width:120px;height:120px}.logo-svg{width:70px;height:70px}.hero{padding:20px}}
+</style>
 </head>
 <body>
-  <!-- Particles canvas -->
-  <canvas id="particles"></canvas>
 
-  <div class="wrap">
-    <main class="hero fade-in" role="main" aria-labelledby="hero-heading">
-      <div class="logo-wrap" aria-hidden="true">
-        <!-- Add your logo to repo as logo.png -->
-        <img src="logo.png" alt="Apronix logo" id="brandLogo" />
-      </div>
-
-      <h1 id="hero-heading"><span class="apronix-title">APRONIX</span></h1>
-      <p class="lead">A Powerful Multipurpose Bot — moderation, utility, music (coming soon), giveaways and more — built for speed and reliability.</p>
-
-      <div class="cta" role="region" aria-label="Primary actions">
-        <a class="btn primary" href="https://discord.com/oauth2/authorize?client_id=1381259403063332884" target="_blank" rel="noopener">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="margin-right:8px"><path d="M8 21l11-9-11-9v18z" fill="white" opacity=".95"/></svg>
-          Add to Discord
-        </a>
-
-        <a class="btn ghost" href="https://discord.gg/mSMjjUUvmG" target="_blank" rel="noopener">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="margin-right:8px"><circle cx="12" cy="12" r="10" stroke="white" opacity=".9" stroke-width="1"/></svg>
-          Join Support
-        </a>
-      </div>
-
-      <p class="note">Invite Apronix to your server or join the support server for help and updates.</p>
-
-      <div class="grid fade-in" style="margin-top:30px;">
-        <div class="card">
-          <h3>🛡️ Moderation</h3>
-          <p>Powerful mod tools: ban, kick, mute, warn, purge, lock/unlock and anti-nuke protection to keep your community safe.</p>
-        </div>
-        <div class="card">
-          <h3>🎵 Music (coming soon)</h3>
-          <p>High-quality music playback, queues, filters, and playlist support — coming in the next release.</p>
-        </div>
-        <div class="card">
-          <h3>🎉 Community</h3>
-          <p>Giveaways, leveling, auto-role and welcome messages to grow and engage your server users.</p>
-        </div>
-      </div>
-    </main>
+  <!-- background layers -->
+  <div class="bg-waves" aria-hidden="true">
+    <div class="wave-layer wave1"></div>
+    <div class="wave-layer wave2"></div>
   </div>
 
-  <footer style="position:relative;z-index:2;text-align:center;padding:28px 8px;color:#9fbad6;">
-    <small>© 2025 Apronix Development Team • Built by Gana</small>
+  <!-- particles canvas -->
+  <canvas id="particles"></canvas>
+
+  <!-- top nav -->
+  <nav class="nav" role="navigation" aria-label="Primary">
+    <a href="#home" aria-label="Home">Home</a>
+    <a href="#commands" class="btn-secondary" aria-label="Commands">Commands</a>
+    <a href="https://discord.com/oauth2/authorize?client_id=1381259403063332884" class="btn-primary" target="_blank" rel="noopener">Invite</a>
+    <a href="https://discord.gg/mSMjjUUvmG" class="btn-secondary" target="_blank" rel="noopener">Support</a>
+  </nav>
+
+  <div class="wrap" id="home">
+    <section class="hero" role="main">
+      <div class="logo-wrap" aria-hidden="true">
+        <div class="logo-glow"></div>
+
+        <!-- Glowing SVG phoenix logo -->
+        <svg class="logo-svg" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="g" x1="0" x2="1">
+              <stop offset="0" stop-color="#00ffff"/>
+              <stop offset="1" stop-color="#58a6ff"/>
+            </linearGradient>
+            <filter id="f" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="2.6" result="b"/>
+              <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+          <!-- stylized phoenix silhouette -->
+          <g fill="url(#g)" filter="url(#f)">
+            <path d="M32 6c-2.8 6-10 6-12 14-1 4 2 6 1 10-1 4-6 6-6 10 0 6 8 8 16 8s16-2 16-8c0-4-5-6-6-10-1-4 2-6 1-10C42 12 34.8 12 32 6z"/>
+            <path d="M22 44c0 4 6 6 10 6s10-2 10-6" stroke="rgba(0,0,0,0.06)" stroke-width="1" fill="none"/>
+          </g>
+        </svg>
+      </div>
+
+      <h1>Apronix</h1>
+      <p class="lead">A Powerful Multipurpose Bot — Protect, Moderate, Automate — all in one bot.</p>
+
+      <div class="cta" role="region" aria-label="Primary actions">
+        <a class="primary pulse" href="https://discord.com/oauth2/authorize?client_id=1381259403063332884" target="_blank" rel="noopener" aria-label="Add Apronix to Discord">➤ Add to Discord</a>
+        <a class="pulse" href="https://discord.gg/mSMjjUUvmG" target="_blank" rel="noopener" aria-label="Join Apronix support">⚑ Join Support</a>
+        <a class="pulse" href="#" onclick="alert('Premium coming soon')" aria-label="Premium">★ Premium</a>
+      </div>
+
+      <div class="coming">Coming Soon — new features & music system</div>
+    </section>
+  </div>
+
+  <!-- Commands -->
+  <section id="commands" class="commands" aria-labelledby="commands-heading">
+    <h2 id="commands-heading">Commands</h2>
+
+    <div class="grid">
+      <!-- Utility -->
+      <div class="card">
+        <div class="top-row">
+          <h3>🧰 Utility <small style="color:var(--muted)">[35]</small></h3>
+          <div class="toggle" onclick="toggleCmd(this,'u')">Show</div>
+        </div>
+        <div id="u" class="cmd-list">
+          afk, avatar, banner, blacklist, embed, help, invite, inviteinfo, managerrole, membercount, prefix, premium, presenceroles, profile, record, roleicon, rolesetup, serverinfo, setup, starboard, statusrole, steal, stickynick, translate, userinfo, variables, vcrole, ytnotifier, botinfo, claim, close, introduction, ping, setup-tickets, support
+        </div>
+      </div>
+
+      <!-- Fun -->
+      <div class="card">
+        <div class="top-row">
+          <h3>😄 Fun <small style="color:var(--muted)">[39]</small></h3>
+          <div class="toggle" onclick="toggleCmd(this,'f')">Show</div>
+        </div>
+        <div id="f" class="cmd-list">
+          acceptmarry, akinator, blush, bonk, cry, cuddle, dance, dare, declinemarry, divorce, emojify, fact, feed, gayrate, gecg, kill, kiss, lick, marry, matchpairs, megumin, meow, minesweeper, nom, paranoia, pat, poke, reaction, rps, ship, simprate, slap, slot, tictactoe, truth, wallpaper, whatyourather, wink, woof
+        </div>
+      </div>
+
+      <!-- Image -->
+      <div class="card">
+        <div class="top-row">
+          <h3>🖼️ Image <small style="color:var(--muted)">[14]</small></h3>
+          <div class="toggle" onclick="toggleCmd(this,'i')">Show</div>
+        </div>
+        <div id="i" class="cmd-list">
+          ad, affect, batslap, beautiful, bobross, delete, gay, jail, poutine, rip, spank, trash, triggered, wanted
+        </div>
+      </div>
+
+      <!-- Moderation -->
+      <div class="card">
+        <div class="top-row">
+          <h3>🛡️ Moderation <small style="color:var(--muted)">[18]</small></h3>
+          <div class="toggle" onclick="toggleCmd(this,'m')">Show</div>
+        </div>
+        <div id="m" class="cmd-list">
+          antinuke, automoderation, ban, clear, hide, kick, lock, nuke, punishment, role, slowmode, timeout, unban, unhide, unlock, unmute, vanityguard, whitelist
+        </div>
+      </div>
+
+      <!-- Welcome -->
+      <div class="card" style="grid-column:1/-1">
+        <div class="top-row">
+          <h3>👋 Welcome <small style="color:var(--muted)">[4]</small></h3>
+          <div class="toggle" onclick="toggleCmd(this,'w')">Show</div>
+        </div>
+        <div id="w" class="cmd-list">
+          autorole, greet, verification, welcome
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer role="contentinfo">
+    <small>© 2025 Apronix Development Team • Built by Gana — <span style="color:var(--muted)">Coming Soon</span></small>
   </footer>
 
-  <!-- Particle animation + subtle parallax mouse effect -->
-  <script>
-    // Basic particle system
-    const canvas = document.getElementById('particles');
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-    let w = canvas.width = innerWidth;
-    let h = canvas.height = innerHeight;
-    const colors = ['#00f0ff','#58a6ff','#00c8ff'];
-    const PARTICLE_COUNT = Math.round((w*h)/80000) + 60; // scale with screen
+<script>
+  // Smooth scroll for nav links
+  document.querySelectorAll('.nav a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',(e)=>{
+      e.preventDefault();
+      const id = a.getAttribute('href');
+      document.querySelector(id).scrollIntoView({behavior:'smooth',block:'start'});
+    });
+  });
 
-    function rand(min,max){return Math.random()*(max-min)+min}
-    function initParticles(){
-      w = canvas.width = innerWidth;
-      h = canvas.height = innerHeight;
-      particles = [];
-      for(let i=0;i<PARTICLE_COUNT;i++){
-        particles.push({
-          x: Math.random()*w,
-          y: Math.random()*h,
-          r: rand(0.6,2.6),
-          vx: rand(-0.3,0.3),
-          vy: rand(-0.3,0.3),
-          hue: colors[Math.floor(Math.random()*colors.length)],
-          alpha: rand(0.14,0.9)
-        });
-      }
+  // Toggle command lists
+  function toggleCmd(el,id){
+    const box = document.getElementById(id);
+    const isOpen = box.classList.contains('open');
+    document.querySelectorAll('.cmd-list').forEach(b=>b.classList.remove('open'));
+    document.querySelectorAll('.toggle').forEach(t=>t.textContent='Show');
+    if(!isOpen){ box.classList.add('open'); el.textContent='Hide'; box.scrollIntoView({behavior:'smooth',block:'center'}); } else { el.textContent='Show'; }
+  }
+
+  // PARTICLES + subtle connect lines
+  const canvas = document.getElementById('particles');
+  const ctx = canvas.getContext('2d');
+  let w = canvas.width = innerWidth;
+  let h = canvas.height = innerHeight;
+  window.addEventListener('resize',()=>{ w = canvas.width = innerWidth; h = canvas.height = innerHeight; init(); });
+
+  let particles = [];
+  function rand(min,max){return Math.random()*(max-min)+min}
+  function init(){
+    particles = [];
+    const count = Math.round((w*h)/90000)+80;
+    for(let i=0;i<count;i++){
+      particles.push({x:Math.random()*w,y:Math.random()*h,r:rand(0.6,2.2),vx:rand(-0.25,0.25),vy:rand(-0.25,0.25),color: (Math.random()>0.5?'#00f0ff':'#58a6ff') ,alpha:rand(0.16,0.9)});
     }
+  }
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    // subtle dark overlay
+    ctx.fillStyle='rgba(0,8,12,0.08)';
+    ctx.fillRect(0,0,w,h);
 
-    function drawParticles(){
-      ctx.clearRect(0,0,w,h);
-      // gentle background glow
-      const grad = ctx.createLinearGradient(0,0,w,h);
-      grad.addColorStop(0, "rgba(0,30,40,0.03)");
-      grad.addColorStop(1, "rgba(6,8,12,0.03)");
-      ctx.fillStyle = grad;
-      ctx.fillRect(0,0,w,h);
+    particles.forEach(p=>{
+      ctx.beginPath();
+      ctx.fillStyle = p.color;
+      ctx.globalAlpha = p.alpha;
+      ctx.shadowBlur = p.r*8;
+      ctx.shadowColor = p.color;
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fill();
+      ctx.closePath();
+      ctx.globalAlpha = 1;
+      ctx.shadowBlur = 0;
+    });
 
-      for(const p of particles){
-        ctx.beginPath();
-        ctx.fillStyle = p.hue;
-        ctx.globalAlpha = p.alpha;
-        ctx.shadowBlur = p.r*8;
-        ctx.shadowColor = p.hue;
-        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-        ctx.fill();
-        ctx.closePath();
-        ctx.shadowBlur = 0;
-        ctx.globalAlpha = 1;
-      }
-
-      // optional connect lines
-      for(let i=0;i<particles.length;i++){
-        for(let j=i+1;j<particles.length;j++){
-          const a = particles[i], b = particles[j];
-          const dx = a.x-b.x, dy = a.y-b.y;
-          const dist = Math.sqrt(dx*dx+dy*dy);
-          if(dist < 110){
-            ctx.beginPath();
-            ctx.strokeStyle = a.hue;
-            ctx.globalAlpha = 0.06 * (1 - dist/110);
-            ctx.lineWidth = 1;
-            ctx.moveTo(a.x,a.y);
-            ctx.lineTo(b.x,b.y);
-            ctx.stroke();
-            ctx.closePath();
-            ctx.globalAlpha = 1;
-          }
+    // connect lines
+    for(let i=0;i<particles.length;i++){
+      for(let j=i+1;j<particles.length;j++){
+        const a=particles[i], b=particles[j];
+        const dx=a.x-b.x, dy=a.y-b.y;
+        const dist=Math.sqrt(dx*dx+dy*dy);
+        if(dist<120){
+          ctx.beginPath();
+          ctx.moveTo(a.x,a.y);
+          ctx.lineTo(b.x,b.y);
+          ctx.strokeStyle = a.color;
+          ctx.globalAlpha = 0.04 * (1 - dist/120);
+          ctx.lineWidth = 1;
+          ctx.stroke();
+          ctx.closePath();
+          ctx.globalAlpha = 1;
         }
       }
     }
-
-    function update(){
-      for(const p of particles){
-        p.x += p.vx;
-        p.y += p.vy;
-        if(p.x < -20) p.x = w+20;
-        if(p.x > w+20) p.x = -20;
-        if(p.y < -20) p.y = h+20;
-        if(p.y > h+20) p.y = -20;
-      }
-    }
-
-    // slow, elegant animation loop
-    function loop(){
-      drawParticles();
-      update();
-      requestAnimationFrame(loop);
-    }
-
-    // parallax / mouse attraction
-    let mouse = {x: -9999, y:-9999};
-    window.addEventListener('mousemove', (e)=>{ mouse.x = e.clientX; mouse.y = e.clientY; });
-    window.addEventListener('mouseleave', ()=>{ mouse.x=-9999; mouse.y=-9999; });
-
-    // subtle attraction effect
-    function attraction(){
-      if(mouse.x === -9999) return;
-      for(const p of particles){
-        const dx = mouse.x - p.x, dy = mouse.y - p.y;
-        const dist = Math.sqrt(dx*dx+dy*dy);
-        if(dist < 160){
-          const force = (160 - dist) / 1400;
-          p.vx += dx * 0.0006 * force;
-          p.vy += dy * 0.0006 * force;
-          // clamp velocity
-          p.vx = Math.max(Math.min(p.vx,0.6),-0.6);
-          p.vy = Math.max(Math.min(p.vy,0.6),-0.6);
-        }
-      }
-    }
-
-    // init and run
-    initParticles();
-    loop();
-
-    // run attraction at an interval so it's subtle and not too costly
-    setInterval(attraction, 60);
-
-    // resize handling
-    let resizeTimer;
-    window.addEventListener('resize', ()=>{
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(()=>{
-        initParticles();
-      }, 120);
+  }
+  function update(){
+    particles.forEach(p=>{
+      p.x += p.vx; p.y += p.vy;
+      if(p.x< -20) p.x = w+20; if(p.x> w+20) p.x=-20;
+      if(p.y< -20) p.y = h+20; if(p.y> h+20) p.y=-20;
     });
+  }
+  function animate(){ draw(); update(); requestAnimationFrame(animate); }
+  init(); animate();
 
-    // small logo animation on load
-    window.addEventListener('load', ()=>{
-      const logo = document.getElementById('brandLogo');
-      if(logo){
-        logo.style.transform = 'scale(0.94)';
-        logo.style.transition = 'transform .9s cubic-bezier(.2,.9,.2,1), filter .6s';
-        setTimeout(()=>{ logo.style.transform = 'scale(1)'; logo.style.filter='drop-shadow(0 18px 50px rgba(0,240,255,0.18))'; }, 140);
+  // small mouse attraction (subtle)
+  let mouse = {x:-9999,y:-9999};
+  window.addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY});
+  setInterval(()=>{
+    if(mouse.x===-9999) return;
+    particles.forEach(p=>{
+      const dx = mouse.x - p.x, dy = mouse.y - p.y;
+      const d = Math.sqrt(dx*dx+dy*dy);
+      if(d<160){
+        p.vx += (dx/d)*0.02;
+        p.vy += (dy/d)*0.02;
+        p.vx = Math.max(Math.min(p.vx,0.6),-0.6);
+        p.vy = Math.max(Math.min(p.vy,0.6),-0.6);
       }
-    });
+    })
+  },70);
+</script>
 
-  </script>
 </body>
 </html>
