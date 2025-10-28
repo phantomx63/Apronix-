@@ -1,32 +1,50 @@
-# Apronix-
-A Powerful Multipurpose Bot For Discord 
+# 🤖 Apronix — A Powerful Multipurpose Discord Bot  
 
-🤖 Apronix — A Powerful Multipurpose Discord Bot
+![Apronix Banner](https://i.imgur.com/2cYxXEc.png) <!-- Replace with your real banner -->
 
-Apronix is a next-generation multipurpose Discord bot built to make your server smarter, faster, and more secure.
-It combines moderation, fun, utility, and automation — all in one bot!
+<p align="center">
+  <a href="https://discord.gg/YOURSERVER"><img src="https://img.shields.io/badge/Discord-Join%20Server-7289DA?style=for-the-badge&logo=discord" /></a>
+  <a href="#"><img src="https://img.shields.io/badge/Language-JavaScript-yellow?style=for-the-badge&logo=javascript" /></a>
+  <a href="#"><img src="https://img.shields.io/badge/Language-C++-blue?style=for-the-badge&logo=c%2B%2B" /></a>
+  <a href="#"><img src="https://img.shields.io/badge/Style-CSS3-1572B6?style=for-the-badge&logo=css3" /></a>
+</p>
 
-⚙️ Features
+---
 
-🛡️ Moderation — Ban, Unban, Kick, Mute, Warn, Lock, Unlock, Purge
+### 🌌 About Apronix  
 
-🎉 Giveaways — Start and manage giveaways easily
+> Apronix is a **powerful, fast, and customizable multipurpose Discord bot** designed for every type of community.  
+> Built with **Node.js, C++, and CSS**, Apronix brings **moderation, fun, security, and automation** — all in one sleek bot.
 
-💬 AFK System — Set and remove AFK status
+---
 
-👋 Welcome Messages — Custom GIFs, embeds, and messages
+### ⚙️ Features  
 
-🚨 Anti-Nuke — Protect your server from raid and mass-deletion attacks
+- 🛡️ **Moderation** — Ban, Unban, Kick, Mute, Warn, Lock, Unlock, Purge  
+- 🎉 **Giveaways** — Start and manage giveaways easily  
+- 💬 **AFK System** — Set and remove AFK status  
+- 👋 **Welcome Messages** — Custom embeds, GIFs, and images  
+- 🚨 **Anti-Nuke System** — Protects your server from raid attacks  
+- ⚙️ **Autorole & Prefix Customization**  
+- 🧾 **Embed Creator** — Create, show, and delete embeds  
+- 🎵 **Music System** *(coming soon)*  
+- 🧠 **Smart Utilities** — User info, server info, and more  
 
-⚙️ Autorole & Prefix Customization
+---
 
-🧾 Embed Creator — Create, show, and delete embeds
+### 🧩 Tech Stack  
 
-🎵 Music System (coming soon)
+| Technology | Usage |
+|-------------|--------|
+| **JavaScript (Node.js)** | Core bot logic & command handling |
+| **C++** | Performance and backend optimizations |
+| **CSS3** | Website & dashboard styling |
+| **Discord.js v14** | Discord API integration |
 
-🧠 Smart Utilities — User info, server info, and more
+---
 
+### 🚀 Installation  
 
-🧰 Commands
-
-Use /help or your custom prefix (e.g. >help) to view all commands.
+1. Clone the repo  
+   ```bash
+   git clone https://github.com/yourusername/Apronix.git
