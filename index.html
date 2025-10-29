@@ -1,100 +1,138 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Apronix — A Powerful Multipurpose Bot</title>
-    <meta
-      name="description"
-      content="Apronix — A powerful multipurpose Discord bot. Invite Apronix, join support, and view commands."
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Poppins", sans-serif;
-      }
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Apronix — A Powerful Multipurpose Bot</title>
+<meta name="description" content="Apronix — A powerful multipurpose Discord bot. Invite Apronix, join support, view commands." />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-      body {
-        background-color: #000;
-        color: #fff;
-        text-align: center;
-        padding: 40px;
-      }
+<style>
+  :root{
+    --bg:#04060a;
+    --card: rgba(10,14,18,0.6);
+    --cyan:#00f0ff;
+    --blue:#58a6ff;
+    --muted:#9fcbe6;
+    --glass: rgba(255,255,255,0.03);
+    --radius:14px;
+    --maxW:1100px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:var(--bg);font-family:'Poppins',system-ui,Segoe UI,Roboto,Arial;color:#e6f8ff}
+  a{color:inherit;text-decoration:none}
+  /* FULL BACKGROUND LAYERS */
+  .bg-waves{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+  .wave-layer{position:absolute;inset:-20% ;filter:blur(60px);opacity:0.09;mix-blend-mode:screen}
+  .wave1{background:linear-gradient(90deg,#002d40 0%, #00384f 50%, #001f3f 100%);animation:rotate1 20s linear infinite}
+  .wave2{background:radial-gradient(circle at 20% 30%, rgba(0,240,255,0.14), transparent 12%), radial-gradient(circle at 80% 70%, rgba(88,166,255,0.08), transparent 12%);animation:rotate2 26s linear infinite}
+  @keyframes rotate1{0%{transform:rotate(0) translate(-5%,0)}100%{transform:rotate(360deg) translate(5%,0)}}
+  @keyframes rotate2{0%{transform:rotate(0) translate(3%,0)}100%{transform:rotate(-360deg) translate(-3%,0)}}
 
-      /* Logo Styling */
-      .logo-container {
-        text-align: center;
-        margin-top: 30px;
-      }
+  /* PARTICLE CANVAS */
+  canvas#particles{position:fixed;inset:0;z-index:1;pointer-events:none}
 
-      .logo-img {
-        width: 160px;
-        height: auto;
-        border-radius: 12px;
-      }
+  /* TOP NAV */
+  .nav {
+    position:fixed;
+    top:18px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:5;
+    display:flex;
+    gap:10px;
+    align-items:center;
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    padding:8px 12px;
+    border-radius:999px;
+    box-shadow:0 8px 30px rgba(0,0,0,0.6);
+    border:1px solid rgba(255,255,255,0.02);
+    backdrop-filter: blur(6px) saturate(120%);
+  }
+  .nav a{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;font-weight:600;font-size:14px;color:var(--cyan)}
+  .nav .btn-secondary{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);color:#cfefff}
+  .nav .btn-primary{background:linear-gradient(90deg, rgba(0,240,255,0.12), rgba(88,166,255,0.06));border:1px solid rgba(0,240,255,0.15);color:#00121a}
 
-      h1 {
-        font-size: 2rem;
-        margin-top: 15px;
-        color: #00e6e6;
-      }
+  /* CENTER WRAPPER */
+  .wrap{position:relative;z-index:3;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:56px 20px}
+  .hero{
+    width:100%;max-width:var(--maxW);background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:18px;padding:36px;border:1px solid rgba(255,255,255,0.02);
+    box-shadow:0 20px 50px rgba(0,0,0,0.6);text-align:center;backdrop-filter: blur(6px);
+  }
 
-      p {
-        font-size: 1rem;
-        margin-top: 8px;
-        color: #aaa;
-      }
+  /* GLOW BEHIND LOGO */
+  .logo-wrap{position:relative;margin:0 auto 18px;width:150px;height:150px;display:grid;place-items:center;border-radius:50%;}
+  .logo-glow{
+    position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 30% 30%, rgba(0,255,255,0.22), transparent 25%), radial-gradient(circle at 70% 70%, rgba(88,166,255,0.14), transparent 30%);
+    filter:blur(20px);transform:scale(.95);animation:pulseGlow 3.2s ease-in-out infinite;z-index:0;
+  }
+  @keyframes pulseGlow{
+    0%{opacity:0.6;transform:scale(0.9) rotate(0deg)}50%{opacity:1;transform:scale(1.02) rotate(4deg)}100%{opacity:0.6;transform:scale(0.9) rotate(0deg)}
+  }
 
-      .buttons {
-        display: flex;
-        justify-content: center;
-        gap: 15px;
-        flex-wrap: wrap;
-        margin-top: 25px;
-      }
+  /* SVG logo (glowing) */
+  .logo-svg{width:92px;height:92px;position:relative;z-index:2;filter:drop-shadow(0 18px 50px rgba(0,240,255,0.12));transition:transform .7s}
+  .logo-svg:hover{transform:translateY(-6px) scale(1.02)}
 
-      a.button {
-        background: #00e6e6;
-        color: #000;
-        padding: 12px 25px;
-        border-radius: 10px;
-        font-weight: 600;
-        text-decoration: none;
-        transition: 0.3s;
-      }
+  h1{font-size:clamp(28px,4vw,44px);color:var(--cyan);text-shadow:0 6px 28px rgba(0,200,255,0.07);letter-spacing:-0.01em;margin-bottom:6px;font-weight:700}
+  p.lead{color:var(--muted);max-width:800px;margin:0 auto 18px;line-height:1.45;font-size:16px}
 
-      a.button:hover {
-        background: #00cccc;
-      }
-    </style>
-  </head>
+  /* CTA buttons */
+  .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:10px}
+  .cta a{padding:12px 20px;border-radius:12px;font-weight:700;border:1px solid rgba(255,255,255,0.03);background:transparent;color:var(--cyan);display:flex;align-items:center;gap:10px;transition:all .18s}
+  .cta a.primary{background:linear-gradient(90deg, rgba(0,240,255,0.12), rgba(88,166,255,0.06));box-shadow:0 12px 30px rgba(0,240,255,0.06);border:1px solid rgba(0,240,255,0.15);color:#001f25}
+  .cta a.pulse{border-radius:999px;backdrop-filter:blur(4px)}
+  .cta a:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(0,240,255,0.09)}
 
-  <body>
-    <!-- ✅ Custom Apronix Logo -->
-    <div class="logo-container">
-      <img
-        src="https://drive.google.com/uc?export=view&id=1Bj_sG0VpxaRaUb9CU7hRy8SO8B05m8T0"
-        alt="Apronix Logo"
-        class="logo-img"
-      />
-    </div>
+  .coming{margin-top:12px;color:var(--muted);opacity:0.95;animation:smallPulse 2s infinite}
+  @keyframes smallPulse{0%,100%{opacity:0.6}50%{opacity:1}}
 
-    <h1>Apronix</h1>
-    <p>A Powerful Multipurpose Bot — Protect, Moderate, Automate — all in one bot.</p>
+  /* COMMANDS SECTION */
+  .commands{max-width:var(--maxW);margin:28px auto 60px;padding:18px}
+  .commands h2{color:var(--cyan);font-size:20px;margin-bottom:12px}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .card{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.008));padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.02);box-shadow:0 10px 24px rgba(0,0,0,0.6)}
+  .card h3{display:flex;align-items:center;gap:10px;color:#cfefff;margin-bottom:8px}
+  .cmd-list{font-family:monospace;background:rgba(0,0,0,0.18);padding:10px;border-radius:8px;color:#dbeeff;line-height:1.6;max-height:0;overflow:hidden;transition:max-height .36s cubic-bezier(.2,.9,.2,1)}
+  .cmd-list.open{max-height:420px;padding:12px}
+  .toggle{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:10px;background:rgba(255,255,255,0.02);cursor:pointer;border:1px solid rgba(255,255,255,0.02)}
+  .top-row{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:10px}
 
-    <div class="buttons">
-      <a href="#" class="button">Invite to Discord</a>
-      <a href="#" class="button">Join Support</a>
-      <a href="#" class="button">View Commands</a>
-    </div>
-  </body>
-</html>
+  /* FOOTER */
+  footer{max-width:var(--maxW);margin:40px auto 60px;padding:18px;text-align:center;color:#9fbad6;font-size:14px}
+
+  /* responsive */
+  @media (max-width:980px){.grid{grid-template-columns:1fr}}
+  @media (max-width:600px){.nav{left:10px;transform:none;top:14px}.nav a{padding:8px}.logo-wrap{width:120px;height:120px}.logo-svg{width:70px;height:70px}.hero{padding:20px}}
+</style>
+</head>
+<body>
+
+  <!-- background layers -->
+  <div class="bg-waves" aria-hidden="true">
+    <div class="wave-layer wave1"></div>
+    <div class="wave-layer wave2"></div>
+  </div>
+
+  <!-- particles canvas -->
+  <canvas id="particles"></canvas>
+
+  <!-- top nav -->
+  <nav class="nav" role="navigation" aria-label="Primary">
+    <a href="#home" aria-label="Home">Home</a>
+    <a href="#commands" class="btn-secondary" aria-label="Commands">Commands</a>
+    <a href="https://discord.com/oauth2/authorize?client_id=1381259403063332884" class="btn-primary" target="_blank" rel="noopener">Invite</a>
+    <a href="https://discord.gg/mSMjjUUvmG" class="btn-secondary" target="_blank" rel="noopener">Support</a>
+  </nav>
+
+  <div class="wrap" id="home">
+    <section class="hero" role="main">
+      <div class="logo-wrap" aria-hidden="true">
+        <div class="logo-glow"></div>
+
+        <!-- Glowing SVG phoenix logo -->
+        <svg class="logo-svg" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <defs>
             <linearGradient id="g" x1="0" x2="1">
               <stop offset="0" stop-color="#00ffff"/>
@@ -117,9 +155,9 @@
       <p class="lead">A Powerful Multipurpose Bot — Protect, Moderate, Automate — all in one bot.</p>
 
       <div class="cta" role="region" aria-label="Primary actions">
-        <a class="pulse" href="https://discord.com/oauth2/authorize?client_id=1381259403063332884" onclick="alert('Click "OK" To Add')" aria-label="Add to your server">❕ Add to Discord</a>
+        <a class="primary pulse" href="https://discord.com/oauth2/authorize?client_id=1381259403063332884" target="_blank" rel="noopener" aria-label="Add Apronix to Discord">➤ Add to Discord</a>
         <a class="pulse" href="https://discord.gg/mSMjjUUvmG" target="_blank" rel="noopener" aria-label="Join Apronix support">⚑ Join Support</a>
-        <a class="pulse" href="https://discord.gg/mSMjjUUvmG" onclick="alert('If You Want Premium You Should Join Our Support Server! Click "OK" To Join')" aria-label="Premium">★ Premium</a>
+        <a class="pulse" href="#" onclick="alert('Premium coming soon')" aria-label="Premium">★ Premium</a>
       </div>
 
       <div class="coming">Coming Soon — new features & music system</div>
@@ -127,119 +165,66 @@
   </div>
 
   <!-- Commands -->
-<section id="commands" class="commands" aria-labelledby="commands-heading">
-  <h2 id="commands-heading" class="commands-title">🧩 Commands</h2>
-  <p class="commands-desc">Discover all Apronix bot commands — organized by category.</p>
+  <section id="commands" class="commands" aria-labelledby="commands-heading">
+    <h2 id="commands-heading">Commands</h2>
 
-  <div class="grid">
-    <!-- Utility -->
-    <div class="card">
-      <div class="top-row">
-        <h3>🧰 Utility <small style="color:var(--muted)">[35]</small></h3>
-        <div class="toggle" onclick="toggleCmd(this,'u')">Show</div>
+    <div class="grid">
+      <!-- Utility -->
+      <div class="card">
+        <div class="top-row">
+          <h3>🧰 Utility <small style="color:var(--muted)">[35]</small></h3>
+          <div class="toggle" onclick="toggleCmd(this,'u')">Show</div>
+        </div>
+        <div id="u" class="cmd-list">
+          afk, avatar, banner, blacklist, embed, help, invite, inviteinfo, managerrole, membercount, prefix, premium, presenceroles, profile, record, roleicon, rolesetup, serverinfo, setup, starboard, statusrole, steal, stickynick, translate, userinfo, variables, vcrole, ytnotifier, botinfo, claim, close, introduction, ping, setup-tickets, support
+        </div>
       </div>
-      <div id="u" class="cmd-list hidden">
-        afk, avatar, banner, blacklist, embed, help, invite, inviteinfo, managerrole, membercount, prefix, premium, presenceroles, profile, record, roleicon, rolesetup, serverinfo, setup, starboard, statusrole, steal, stickynick, translate, userinfo, variables, vcrole, ytnotifier, botinfo, claim, close, introduction, ping, setup-tickets, support
+
+      <!-- Fun -->
+      <div class="card">
+        <div class="top-row">
+          <h3>😄 Fun <small style="color:var(--muted)">[39]</small></h3>
+          <div class="toggle" onclick="toggleCmd(this,'f')">Show</div>
+        </div>
+        <div id="f" class="cmd-list">
+          acceptmarry, akinator, blush, bonk, cry, cuddle, dance, dare, declinemarry, divorce, emojify, fact, feed, gayrate, gecg, kill, kiss, lick, marry, matchpairs, megumin, meow, minesweeper, nom, paranoia, pat, poke, reaction, rps, ship, simprate, slap, slot, tictactoe, truth, wallpaper, whatyourather, wink, woof
+        </div>
+      </div>
+
+      <!-- Image -->
+      <div class="card">
+        <div class="top-row">
+          <h3>🖼️ Image <small style="color:var(--muted)">[14]</small></h3>
+          <div class="toggle" onclick="toggleCmd(this,'i')">Show</div>
+        </div>
+        <div id="i" class="cmd-list">
+          ad, affect, batslap, beautiful, bobross, delete, gay, jail, poutine, rip, spank, trash, triggered, wanted
+        </div>
+      </div>
+
+      <!-- Moderation -->
+      <div class="card">
+        <div class="top-row">
+          <h3>🛡️ Moderation <small style="color:var(--muted)">[18]</small></h3>
+          <div class="toggle" onclick="toggleCmd(this,'m')">Show</div>
+        </div>
+        <div id="m" class="cmd-list">
+          antinuke, automoderation, ban, clear, hide, kick, lock, nuke, punishment, role, slowmode, timeout, unban, unhide, unlock, unmute, vanityguard, whitelist
+        </div>
+      </div>
+
+      <!-- Welcome -->
+      <div class="card" style="grid-column:1/-1">
+        <div class="top-row">
+          <h3>👋 Welcome <small style="color:var(--muted)">[4]</small></h3>
+          <div class="toggle" onclick="toggleCmd(this,'w')">Show</div>
+        </div>
+        <div id="w" class="cmd-list">
+          autorole, greet, verification, welcome
+        </div>
       </div>
     </div>
-
-    <!-- Fun -->
-    <div class="card">
-      <div class="top-row">
-        <h3>😄 Fun <small style="color:var(--muted)">[39]</small></h3>
-        <div class="toggle" onclick="toggleCmd(this,'l')">Show</div>
-      </div>
-      <div id="l" class="cmd-list hidden">
-        acceptmarry, akinator, blush, bonk, cry, cuddle, dance, dare, declinemarry, divorce, emojify, fact, feed, gayrate, gecg, kill, kiss, lick, marry, matchpairs, megumin, meow, minesweeper, nom, paranoia, pat, poke, reaction, rps, ship, simprate, slap, slot, tictactoe, truth, wallpaper, whatyourather, wink, woof
-      </div>
-    </div>
-
-    <!-- Image -->
-    <div class="card">
-      <div class="top-row">
-        <h3>🖼️ Image <small style="color:var(--muted)">[14]</small></h3>
-        <div class="toggle" onclick="toggleCmd(this,'i')">Show</div>
-      </div>
-      <div id="i" class="cmd-list hidden">
-        ad, affect, batslap, beautiful, bobross, delete, gay, jail, poutine, rip, spank, trash, triggered, wanted
-      </div>
-    </div>
-
-    <!-- Moderation -->
-    <div class="card">
-      <div class="top-row">
-        <h3>🛡️ Moderation <small style="color:var(--muted)">[18]</small></h3>
-        <div class="toggle" onclick="toggleCmd(this,'m')">Show</div>
-      </div>
-      <div id="m" class="cmd-list hidden">
-        antinuke, automoderation, ban, clear, hide, kick, lock, nuke, punishment, role, slowmode, timeout, unban, unhide, unlock, unmute, vanityguard, whitelist
-      </div>
-    </div>
-
-    <!-- Welcome -->
-    <div class="card" style="grid-column:1/-1">
-      <div class="top-row">
-        <h3>👋 Welcome <small style="color:var(--muted)">[4]</small></h3>
-        <div class="toggle" onclick="toggleCmd(this,'w')">Show</div>
-      </div>
-      <div id="w" class="cmd-list hidden">
-        autorole, greet, verification, welcome
-      </div>
-    </div>
-  </div>
-</section>
-
-<style>
-  .commands-title {
-    text-align: center;
-    font-size: 2rem;
-    color: cyan;
-    text-shadow: 0 0 10px cyan, 0 0 20px cyan;
-    margin-bottom: 0.3rem;
-  }
-
-  .commands-desc {
-    text-align: center;
-    color: var(--muted);
-    margin-bottom: 1.5rem;
-    font-size: 1rem;
-  }
-
-  .cmd-list {
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transition: max-height 0.4s ease, opacity 0.3s ease;
-  }
-
-  .cmd-list.show {
-    max-height: 500px;
-    opacity: 1;
-  }
-
-  .toggle {
-    cursor: pointer;
-    color: cyan;
-    background: rgba(0, 255, 255, 0.1);
-    padding: 4px 10px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px cyan;
-    transition: all 0.3s ease;
-  }
-
-  .toggle:hover {
-    background: rgba(0, 255, 255, 0.2);
-    box-shadow: 0 0 20px cyan, 0 0 30px cyan;
-  }
-</style>
-
-<script>
-  function toggleCmd(btn, id) {
-    const list = document.getElementById(id);
-    list.classList.toggle('show');
-    btn.textContent = list.classList.contains('show') ? 'Hide' : 'Show';
-  }
-</script>
+  </section>
 
   <footer role="contentinfo">
     <small>© 2025 Apronix Development Team • Built by Gana — <span style="color:var(--muted)">Coming Soon</span></small>
