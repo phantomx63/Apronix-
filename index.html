@@ -131,25 +131,44 @@
       <div class="logo-wrap" aria-hidden="true">
         <div class="logo-glow"></div>
 
-        <!-- Glowing SVG phoenix logo -->
-        <svg class="logo-svg" viewBox="0 0 64 64" xmlns="https://files.catbox.moe/g3y4k1.svg" aria-hidden="true">
-          <defs>
-            <linearGradient id="g" x1="0" x2="1">
-              <stop offset="0" stop-color="#00ffff"/>
-              <stop offset="1" stop-color="#58a6ff"/>
-            </linearGradient>
-            <filter id="f" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="2.6" result="b"/>
-              <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-            </filter>
-          </defs>
-          <!-- stylized phoenix silhouette -->
-          <g fill="url(#g)" filter="url(#f)">
-            <path d="M32 6c-2.8 6-10 6-12 14-1 4 2 6 1 10-1 4-6 6-6 10 0 6 8 8 16 8s16-2 16-8c0-4-5-6-6-10-1-4 2-6 1-10C42 12 34.8 12 32 6z"/>
-            <path d="M22 44c0 4 6 6 10 6s10-2 10-6" stroke="rgba(0,0,0,0.06)" stroke-width="1" fill="none"/>
-          </g>
-        </svg>
-      </div>
+        <!-- Custom Apronix Logo (glowing cyan SVG) -->
+<div class="logo-container" style="text-align: center; margin-top: 30px;">
+  <img src="https://files.catbox.moe/g3y4k1.svg"
+       alt="Apronix Logo"
+       class="logo-svg" />
+</div>
+
+<style>
+  /* Glowing cyan SVG effect */
+  .logo-svg {
+    width: 120px;
+    height: auto;
+    position: relative;
+    z-index: 2;
+    filter: drop-shadow(0 0 15px #00ffff)
+            drop-shadow(0 0 25px #00ffff)
+            drop-shadow(0 0 45px #00ffff);
+    transition: transform 0.6s ease, filter 0.6s ease;
+    animation: glowPulse 2.2s ease-in-out infinite alternate;
+  }
+
+  .logo-svg:hover {
+    transform: translateY(-5px) scale(1.05);
+    filter: drop-shadow(0 0 25px #00ffff)
+            drop-shadow(0 0 50px #00ffff);
+  }
+
+  @keyframes glowPulse {
+    0% {
+      filter: drop-shadow(0 0 15px #00ffff)
+              drop-shadow(0 0 25px #00ffff);
+    }
+    100% {
+      filter: drop-shadow(0 0 35px #00ffff)
+              drop-shadow(0 0 60px #00ffff);
+    }
+  }
+</style>
 
       <h1>Apronix</h1>
       <p class="lead">A Powerful Multipurpose Bot — Protect, Moderate, Automate — all in one bot.</p>
