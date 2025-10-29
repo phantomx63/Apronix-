@@ -71,8 +71,15 @@
   }  
   
   /* SVG logo (glowing) */  
-  .logo-svg{width}160px;height:160px;position:relative;z-index:2;filter:drop-shadow(0 18px 50px rgba(0,240,255,0.12));transition:transform .7s}  
-  .logo-svg:hover{transform:translateY(-6px) scale(1.02)}  
+  .logo-svg{width}240px;height:240px;position:relative;z-index:2;filter:drop-shadow(0 18px 50px rgba(0,240,255,0.12));transition:transform .7s}  
+  .logo-svg {
+  width: 160px; /* change this value to resize */
+  height: 160px; /* change this value to resize */
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 18px 50px rgba(0,240,255,0.12));
+  transition: transform .7s;
+} 
   
   h1{font-size:clamp(28px,4vw,44px);color:var(--cyan);text-shadow:0 6px 28px rgba(0,200,255,0.07);letter-spacing:-0.01em;margin-bottom:6px;font-weight:700}  
   p.lead{color:var(--muted);max-width:800px;margin:0 auto 18px;line-height:1.45;font-size:16px}  
