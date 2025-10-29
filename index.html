@@ -165,71 +165,99 @@
   </div>
 
   <!-- Commands -->
-  <section id="commands" class="commands" aria-labelledby="commands-heading">
-    <h2 id="commands-heading">Commands</h2>
+<section id="commands" class="commands" aria-labelledby="commands-heading">
+  <h2 id="commands-heading">Commands</h2>
 
-    <div class="grid">
-      <!-- Utility -->
-      <div class="card">
-        <div class="top-row">
-          <h3>🧰 Utility <small style="color:var(--muted)">[35]</small></h3>
-
-
-
-          <div class="toggle" onclick="toggleCmd(this,'u')">Show</div>
-        </div>
-        <div id="u" class="cmd-list">
-        
- afk, avatar, banner, blacklist, embed, help, invite, inviteinfo, managerrole, membercount, prefix, premium, presenceroles, profile, record, roleicon, rolesetup, serverinfo, setup, starboard, statusrole, steal, stickynick, translate, userinfo, variables, vcrole, ytnotifier, botinfo, claim, close, introduction, ping, setup-tickets, support
-        </div>
+  <div class="grid">
+    <!-- Utility -->
+    <div class="card">
+      <div class="top-row">
+        <h3>🧰 Utility <small style="color:var(--muted)">[35]</small></h3>
+        <div class="toggle" onclick="toggleCmd(this,'u')">Show</div>
       </div>
-
-      <div class="grid">
-      <!-- Fun -->
-      <div class="card">
-        <div class="top-row">
-          <h3>😄 Fun <small style="color:var(--muted)">[39]</small></h3>
-          <div class="toggle" onclick="toggleCmd(this,'l')">Show</div>
-        </div>
-        <div id="l" class="cmd-list">
-          acceptmarry, akinator, blush, bonk, cry, cuddle, dance, dare, declinemarry, divorce, emojify, fact, feed, gayrate, gecg, kill, kiss, lick, marry, matchpairs, megumin, meow, minesweeper, nom, paranoia, pat, poke, reaction, rps, ship, simprate, slap, slot, tictactoe, truth, wallpaper, whatyourather, wink, woof
-        </div>
-      </div>
-
-      <!-- Image -->
-      <div class="card">
-        <div class="top-row">
-          <h3>🖼️ Image <small style="color:var(--muted)">[14]</small></h3>
-          <div class="toggle" onclick="toggleCmd(this,'i')">Show</div>
-        </div>
-        <div id="i" class="cmd-list">
-          ad, affect, batslap, beautiful, bobross, delete, gay, jail, poutine, rip, spank, trash, triggered, wanted
-        </div>
-      </div>
-
-      <!-- Moderation -->
-      <div class="card">
-        <div class="top-row">
-          <h3>🛡️ Moderation <small style="color:var(--muted)">[18]</small></h3>
-          <div class="toggle" onclick="toggleCmd(this,'m')">Show</div>
-        </div>
-        <div id="m" class="cmd-list">
-          antinuke, automoderation, ban, clear, hide, kick, lock, nuke, punishment, role, slowmode, timeout, unban, unhide, unlock, unmute, vanityguard, whitelist
-        </div>
-      </div>
-
-      <!-- Welcome -->
-      <div class="card" style="grid-column:1/-1">
-        <div class="top-row">
-          <h3>👋 Welcome <small style="color:var(--muted)">[4]</small></h3>
-          <div class="toggle" onclick="toggleCmd(this,'w')">Show</div>
-        </div>
-        <div id="w" class="cmd-list">
-          autorole, greet, verification, welcome
-        </div>
+      <div id="u" class="cmd-list hidden">
+        afk, avatar, banner, blacklist, embed, help, invite, inviteinfo, managerrole, membercount, prefix, premium, presenceroles, profile, record, roleicon, rolesetup, serverinfo, setup, starboard, statusrole, steal, stickynick, translate, userinfo, variables, vcrole, ytnotifier, botinfo, claim, close, introduction, ping, setup-tickets, support
       </div>
     </div>
-  </section>
+
+    <!-- Fun -->
+    <div class="card">
+      <div class="top-row">
+        <h3>😄 Fun <small style="color:var(--muted)">[39]</small></h3>
+        <div class="toggle" onclick="toggleCmd(this,'l')">Show</div>
+      </div>
+      <div id="l" class="cmd-list hidden">
+        acceptmarry, akinator, blush, bonk, cry, cuddle, dance, dare, declinemarry, divorce, emojify, fact, feed, gayrate, gecg, kill, kiss, lick, marry, matchpairs, megumin, meow, minesweeper, nom, paranoia, pat, poke, reaction, rps, ship, simprate, slap, slot, tictactoe, truth, wallpaper, whatyourather, wink, woof
+      </div>
+    </div>
+
+    <!-- Image -->
+    <div class="card">
+      <div class="top-row">
+        <h3>🖼️ Image <small style="color:var(--muted)">[14]</small></h3>
+        <div class="toggle" onclick="toggleCmd(this,'i')">Show</div>
+      </div>
+      <div id="i" class="cmd-list hidden">
+        ad, affect, batslap, beautiful, bobross, delete, gay, jail, poutine, rip, spank, trash, triggered, wanted
+      </div>
+    </div>
+
+    <!-- Moderation -->
+    <div class="card">
+      <div class="top-row">
+        <h3>🛡️ Moderation <small style="color:var(--muted)">[18]</small></h3>
+        <div class="toggle" onclick="toggleCmd(this,'m')">Show</div>
+      </div>
+      <div id="m" class="cmd-list hidden">
+        antinuke, automoderation, ban, clear, hide, kick, lock, nuke, punishment, role, slowmode, timeout, unban, unhide, unlock, unmute, vanityguard, whitelist
+      </div>
+    </div>
+
+    <!-- Welcome -->
+    <div class="card" style="grid-column:1/-1">
+      <div class="top-row">
+        <h3>👋 Welcome <small style="color:var(--muted)">[4]</small></h3>
+        <div class="toggle" onclick="toggleCmd(this,'w')">Show</div>
+      </div>
+      <div id="w" class="cmd-list hidden">
+        autorole, greet, verification, welcome
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cmd-list {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.4s ease, opacity 0.3s ease;
+  }
+
+  .cmd-list.show {
+    max-height: 500px;
+    opacity: 1;
+  }
+
+  .toggle {
+    cursor: pointer;
+    color: cyan;
+    text-shadow: 0 0 8px cyan;
+    transition: all 0.2s ease;
+  }
+
+  .toggle:hover {
+    text-shadow: 0 0 12px cyan, 0 0 24px cyan;
+  }
+</style>
+
+<script>
+  function toggleCmd(btn, id) {
+    const list = document.getElementById(id);
+    list.classList.toggle('show');
+    btn.textContent = list.classList.contains('show') ? 'Hide' : 'Show';
+  }
+</script>
 
   <footer role="contentinfo">
     <small>© 2025 Apronix Development Team • Built by Gana — <span style="color:var(--muted)">Coming Soon</span></small>
