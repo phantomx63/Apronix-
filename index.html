@@ -166,7 +166,8 @@
 
   <!-- Commands -->
 <section id="commands" class="commands" aria-labelledby="commands-heading">
-  <h2 id="commands-heading">Commands</h2>
+  <h2 id="commands-heading" class="commands-title">🧩 Commands</h2>
+  <p class="commands-desc">Discover all Apronix bot commands — organized by category.</p>
 
   <div class="grid">
     <!-- Utility -->
@@ -227,6 +228,21 @@
 </section>
 
 <style>
+  .commands-title {
+    text-align: center;
+    font-size: 2rem;
+    color: cyan;
+    text-shadow: 0 0 10px cyan, 0 0 20px cyan;
+    margin-bottom: 0.3rem;
+  }
+
+  .commands-desc {
+    text-align: center;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+  }
+
   .cmd-list {
     max-height: 0;
     overflow: hidden;
@@ -242,12 +258,16 @@
   .toggle {
     cursor: pointer;
     color: cyan;
-    text-shadow: 0 0 8px cyan;
-    transition: all 0.2s ease;
+    background: rgba(0, 255, 255, 0.1);
+    padding: 4px 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px cyan;
+    transition: all 0.3s ease;
   }
 
   .toggle:hover {
-    text-shadow: 0 0 12px cyan, 0 0 24px cyan;
+    background: rgba(0, 255, 255, 0.2);
+    box-shadow: 0 0 20px cyan, 0 0 30px cyan;
   }
 </style>
 
