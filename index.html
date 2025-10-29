@@ -162,68 +162,131 @@
     </section>
   </div>
 
-  <!-- Commands -->
-  <section id="commands" class="commands" aria-labelledby="commands-heading">
-    <h2 id="commands-heading">Commands</h2>
+  <!-- ================= Commands Section ================= -->
+<section id="commands" class="commands-section">
+  <h1 class="commands-title">Commands</h1>
 
-    <div class="grid">
-      <!-- Utility -->
-      <div class="card">
-        <div class="top-row">
-          <h3>🧰 Utility <small style="color:var(--muted)">[35]</small></h3>
-          <div class="toggle" onclick="toggleCmd(this,'u')">Show</div>
-        </div>
-        <div id="u" class="cmd-list">
-          afk, avatar, banner, blacklist, embed, help, invite, inviteinfo, managerrole, membercount, prefix, premium, presenceroles, profile, record, roleicon, rolesetup, serverinfo, setup, starboard, statusrole, steal, stickynick, translate, userinfo, variables, vcrole, ytnotifier, botinfo, claim, close, introduction, ping, setup-tickets, support
-        </div>
-      </div>
-
-      <!-- Fun -->
-      <div class="card">
-        <div class="top-row">
-          <h3>😄 Fun <small style="color:var(--muted)">[39]</small></h3>
-          <div class="toggle" onclick="toggleCmd(this,'l')">Show</div>
-        </div>
-
-        <div id="l" class="cmd-list">
-          acceptmarry, akinator, blush, bonk, cry, cuddle, dance, dare, declinemarry, divorce, emojify, fact, feed, gayrate, gecg, kill, kiss, lick, marry, matchpairs, megumin, meow, minesweeper, nom, paranoia, pat, poke, reaction, rps, ship, simprate, slap, slot, tictactoe, truth, wallpaper, whatyourather, wink, woof
-        </div>
-      </div>
-
-      <!-- Image -->
-      <div class="card">
-        <div class="top-row">
-          <h3>🖼️ Image <small style="color:var(--muted)">[14]</small></h3>
-          <div class="toggle" onclick="toggleCmd(this,'i')">Show</div>
-        </div>
-        <div id="i" class="cmd-list">
-          ad, affect, batslap, beautiful, bobross, delete, gay, jail, poutine, rip, spank, trash, triggered, wanted
-        </div>
-      </div>
-
-      <!-- Moderation -->
-      <div class="card">
-        <div class="top-row">
-          <h3>🛡️ Moderation <small style="color:var(--muted)">[18]</small></h3>
-          <div class="toggle" onclick="toggleCmd(this,'m')">Show</div>
-        </div>
-        <div id="m" class="cmd-list">
-          antinuke, automoderation, ban, clear, hide, kick, lock, nuke, punishment, role, slowmode, timeout, unban, unhide, unlock, unmute, vanityguard, whitelist
-        </div>
-      </div>
-
-      <!-- Welcome -->
-      <div class="card" style="grid-column:1/-1">
-        <div class="top-row">
-          <h3>👋 Welcome <small style="color:var(--muted)">[4]</small></h3>
-          <div class="toggle" onclick="toggleCmd(this,'w')">Show</div>
-        </div>
-        <div id="w" class="cmd-list">
-          autorole, greet, verification, welcome
-        </div>
-      </div>
+  <!-- 🧰 Utility -->
+  <div class="command-category">
+    <h3>🧰 Utility [35] <button class="show-btn">Show</button></h3>
+    <div class="command-list">
+      afk, avatar, banner, blacklist, embed, help, ping, prefix, invite, about, botinfo, serverinfo, userinfo, roleinfo, emojiinfo, translate, uptime, vote, reminders, poll, snipe, editsnipe, membercount, weather, google, urban, wiki, qr, screenshot, shorten, afklist, calculator, timezone, dictionary, cooldown, customcommands
     </div>
-  </section>
+  </div>
+
+  <!-- 😄 Fun -->
+  <div class="command-category">
+    <h3>😄 Fun [39] <button class="show-btn">Show</button></h3>
+    <div class="command-list">
+      8ball, akinator, ascii, blush, bonk, clap, coinflip, cuddle, dance, dare, fact, feed, gayrate, hack, hug, joke, kill, kiss, laugh, lick, meme, mock, pat, poke, rate, roast, say, ship, slap, smug, spank, tictactoe, truth, waifu, marry, divorce, simprate, iq, motivation
+    </div>
+  </div>
+
+  <!-- 🖼️ Image -->
+  <div class="command-category">
+    <h3>🖼️ Image [14] <button class="show-btn">Show</button></h3>
+    <div class="command-list">
+      ad, affect, batslap, beautiful, bobross, blur, brightness, circle, delete, facepalm, invert, pixelate, rip, triggered
+    </div>
+  </div>
+
+  <!-- 🛡️ Moderation -->
+  <div class="command-category">
+    <h3>🛡️ Moderation [18] <button class="show-btn">Show</button></h3>
+    <div class="command-list">
+      antinuke, automoderation, ban, clear, hide, kick, lock, mute, purge, roleadd, roleremove, show, slowmode, timeout, unban, unmute, warn, warnings
+    </div>
+  </div>
+
+  <!-- 👋 Welcome -->
+  <div class="command-category">
+    <h3>👋 Welcome [4] <button class="show-btn">Show</button></h3>
+    <div class="command-list">
+      autorole, greet, verification, welcome
+    </div>
+  </div>
+</section>
+
+<!-- ================= CSS ================= -->
+<style>
+.commands-section {
+  text-align: center;
+  padding: 80px 20px;
+  background: transparent;
+}
+
+.commands-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #00ffff;
+  margin-bottom: 40px;
+}
+
+.command-category {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 800px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.1);
+}
+
+.command-category:hover {
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+.command-category h3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  font-weight: 600;
+  margin: 0;
+}
+
+.show-btn {
+  background-color: rgba(0, 255, 255, 0.15);
+  border: none;
+  border-radius: 12px;
+  color: #00ffff;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: 500;
+}
+
+.show-btn:hover {
+  background-color: rgba(0, 255, 255, 0.25);
+}
+
+.command-list {
+  display: none;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  color: #ddd;
+  font-size: 0.95rem;
+  margin-top: 12px;
+  text-align: center;
+}
+
+.command-category.showing .command-list {
+  display: flex;
+}
+</style>
+
+<!-- ================= JS ================= -->
+<script>
+document.querySelectorAll('.show-btn').forEach(button => {
+  button.addEventListener('click', () => {
+    const category = button.closest('.command-category');
+    category.classList.toggle('showing');
+    button.textContent = category.classList.contains('showing') ? 'Hide' : 'Show';
+  });
+});
+</script>
 
   <footer role="contentinfo">
     <small>© 2025 Apronix Development Team • Built by Gana — <span style="color:var(--muted)">Coming Soon</span></small>
