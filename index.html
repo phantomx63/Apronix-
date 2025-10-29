@@ -164,179 +164,120 @@
     </section>
   </div>
 
-  <!-- Commands Section -->
+  <!-- Commands -->
 <section id="commands" class="commands" aria-labelledby="commands-heading">
-  <h2 id="commands-heading" style="color: cyan; text-shadow: 0 0 15px cyan;">⚡ Commands</h2>
+  <h2 id="commands-heading" class="commands-title">🧩 Commands</h2>
+  <p class="commands-desc">Discover all Apronix bot commands — organized by category.</p>
 
   <div class="grid">
     <!-- Utility -->
-    <div class="category">
-      <h3>🧰 Utility <button class="show-btn" onclick="toggleCategory(this)">Show</button></h3>
-      <ul class="commands">
-        <li>afk</li>
-        <li>avatar</li>
-        <li>banner</li>
-        <li>blacklist</li>
-        <li>embed</li>
-        <li>help</li>
-        <li>invite</li>
-        <li>prefix</li>
-        <li>profile</li>
-        <li>serverinfo</li>
-      </ul>
+    <div class="card">
+      <div class="top-row">
+        <h3>🧰 Utility <small style="color:var(--muted)">[35]</small></h3>
+        <div class="toggle" onclick="toggleCmd(this,'u')">Show</div>
+      </div>
+      <div id="u" class="cmd-list hidden">
+        afk, avatar, banner, blacklist, embed, help, invite, inviteinfo, managerrole, membercount, prefix, premium, presenceroles, profile, record, roleicon, rolesetup, serverinfo, setup, starboard, statusrole, steal, stickynick, translate, userinfo, variables, vcrole, ytnotifier, botinfo, claim, close, introduction, ping, setup-tickets, support
+      </div>
     </div>
 
     <!-- Fun -->
-    <div class="category">
-      <h3>😄 Fun <button class="show-btn" onclick="toggleCategory(this)">Show</button></h3>
-      <ul class="commands">
-        <li>acceptmarry</li>
-        <li>akinator</li>
-        <li>cry</li>
-        <li>dance</li>
-        <li>dare</li>
-        <li>kiss</li>
-        <li>rps</li>
-        <li>ship</li>
-        <li>slap</li>
-        <li>tictactoe</li>
-      </ul>
+    <div class="card">
+      <div class="top-row">
+        <h3>😄 Fun <small style="color:var(--muted)">[39]</small></h3>
+        <div class="toggle" onclick="toggleCmd(this,'l')">Show</div>
+      </div>
+      <div id="l" class="cmd-list hidden">
+        acceptmarry, akinator, blush, bonk, cry, cuddle, dance, dare, declinemarry, divorce, emojify, fact, feed, gayrate, gecg, kill, kiss, lick, marry, matchpairs, megumin, meow, minesweeper, nom, paranoia, pat, poke, reaction, rps, ship, simprate, slap, slot, tictactoe, truth, wallpaper, whatyourather, wink, woof
+      </div>
     </div>
 
     <!-- Image -->
-    <div class="category">
-      <h3>🖼️ Image <button class="show-btn" onclick="toggleCategory(this)">Show</button></h3>
-      <ul class="commands">
-        <li>ad</li>
-        <li>beautiful</li>
-        <li>delete</li>
-        <li>jail</li>
-        <li>rip</li>
-        <li>trash</li>
-        <li>wanted</li>
-      </ul>
+    <div class="card">
+      <div class="top-row">
+        <h3>🖼️ Image <small style="color:var(--muted)">[14]</small></h3>
+        <div class="toggle" onclick="toggleCmd(this,'i')">Show</div>
+      </div>
+      <div id="i" class="cmd-list hidden">
+        ad, affect, batslap, beautiful, bobross, delete, gay, jail, poutine, rip, spank, trash, triggered, wanted
+      </div>
     </div>
 
     <!-- Moderation -->
-    <div class="category">
-      <h3>🛡️ Moderation <button class="show-btn" onclick="toggleCategory(this)">Show</button></h3>
-      <ul class="commands">
-        <li>ban</li>
-        <li>kick</li>
-        <li>mute</li>
-        <li>unmute</li>
-        <li>lock</li>
-        <li>unlock</li>
-        <li>nuke</li>
-        <li>timeout</li>
-        <li>unban</li>
-        <li>warn</li>
-      </ul>
+    <div class="card">
+      <div class="top-row">
+        <h3>🛡️ Moderation <small style="color:var(--muted)">[18]</small></h3>
+        <div class="toggle" onclick="toggleCmd(this,'m')">Show</div>
+      </div>
+      <div id="m" class="cmd-list hidden">
+        antinuke, automoderation, ban, clear, hide, kick, lock, nuke, punishment, role, slowmode, timeout, unban, unhide, unlock, unmute, vanityguard, whitelist
+      </div>
     </div>
 
     <!-- Welcome -->
-    <div class="category">
-      <h3>👋 Welcome <button class="show-btn" onclick="toggleCategory(this)">Show</button></h3>
-      <ul class="commands">
-        <li>autorole</li>
-        <li>greet</li>
-        <li>verification</li>
-        <li>welcome</li>
-      </ul>
+    <div class="card" style="grid-column:1/-1">
+      <div class="top-row">
+        <h3>👋 Welcome <small style="color:var(--muted)">[4]</small></h3>
+        <div class="toggle" onclick="toggleCmd(this,'w')">Show</div>
+      </div>
+      <div id="w" class="cmd-list hidden">
+        autorole, greet, verification, welcome
+      </div>
     </div>
   </div>
 </section>
 
-<script>
-  function toggleCategory(btn) {
-    const commands = btn.parentElement.nextElementSibling;
-    commands.classList.toggle("show");
-    btn.textContent = commands.classList.contains("show") ? "Hide" : "Show";
-  }
-</script>
-
 <style>
-  #commands {
-    padding: 50px 20px;
-  }
-
-  .grid {
-    display: grid;
-    gap: 25px;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  .category {
-    background: #111;
-    border-radius: 16px;
-    padding: 20px;
-    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
-    transition: 0.3s;
-  }
-
-  .category:hover {
-    box-shadow: 0 0 25px rgba(0, 255, 255, 0.6);
-    transform: translateY(-5px);
-  }
-
-  .category h3 {
-    margin: 0;
-    font-size: 20px;
+  .commands-title {
+    text-align: center;
+    font-size: 2rem;
     color: cyan;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    text-shadow: 0 0 10px cyan, 0 0 20px cyan;
+    margin-bottom: 0.3rem;
   }
 
-  .show-btn {
-    padding: 6px 14px;
-    background-color: #00ffff;
-    border: none;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    color: #111;
-    transition: 0.3s;
-    box-shadow: 0 0 10px #00ffff;
+  .commands-desc {
+    text-align: center;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
   }
 
-  .show-btn:hover {
-    background-color: #00e6e6;
-    box-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff;
-  }
-
-  .commands {
-    list-style: none;
-    padding: 0;
-    margin-top: 15px;
-    overflow: hidden;
+  .cmd-list {
     max-height: 0;
+    overflow: hidden;
     opacity: 0;
-    transition: all 0.4s ease-in-out;
+    transition: max-height 0.4s ease, opacity 0.3s ease;
   }
 
-  .commands.show {
-    max-height: 600px;
+  .cmd-list.show {
+    max-height: 500px;
     opacity: 1;
   }
 
-  .commands li {
+  .toggle {
+    cursor: pointer;
+    color: cyan;
     background: rgba(0, 255, 255, 0.1);
-    margin: 6px 0;
-    padding: 8px 12px;
-    border-radius: 8px;
-    border-left: 3px solid cyan;
-    transition: 0.3s;
+    padding: 4px 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px cyan;
+    transition: all 0.3s ease;
   }
 
-  .commands li:hover {
+  .toggle:hover {
     background: rgba(0, 255, 255, 0.2);
-    transform: translateX(5px);
+    box-shadow: 0 0 20px cyan, 0 0 30px cyan;
   }
 </style>
+
+<script>
+  function toggleCmd(btn, id) {
+    const list = document.getElementById(id);
+    list.classList.toggle('show');
+    btn.textContent = list.classList.contains('show') ? 'Hide' : 'Show';
+  }
+</script>
 
   <footer role="contentinfo">
     <small>© 2025 Apronix Development Team • Built by Gana — <span style="color:var(--muted)">Coming Soon</span></small>
